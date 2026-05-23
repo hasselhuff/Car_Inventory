@@ -1,72 +1,32 @@
 ﻿using System;
+using System.IO;
+using System.Text.Json;
 
-namespace CarApplication
+public class Inventory
 {
-    public class Car
+    public required List<Car> Cars { get; set; }
+}
+
+public class Car
+{
+    public required string Make { get; set; }
+    public required string Model { get; set; }
+    public int Year { get; set; }
+    public double Cost { get; set; }
+}
+
+class Program
+{
+    static void Main()
     {
-        public string make;
-        public string model;
-        public int year;
-        public double cost;
-
-        public string Make
+        string jsonFile = File.ReadAllText("inventory.json");
+        Inventory inventory = JsonSerializer.Deserialize<Inventory>(jsonFile);
+        Console.WriteLine("Current Inventory:");
+        Console.WriteLine("------------------");
+        foreach (Car car in inventory.Cars)
         {
-            get { return make; }
-            set { make = value; }
+            Console.WriteLine($"Make: {car.Make}\tModel: {car.Model}\tYear: {car.Year}\t{car.Cost}");
         }
 
-         public string Model
-        {
-            get { return model; }
-            set { model = value; }
-        }
-
-        public int Year
-        {
-            get {return year;}
-            set {year = value;}
-        }
-
-        public double Cost
-        {
-            get {return cost;}
-            set {cost = value;}
-        }
-        public void DisplayCarInfo()
-        {
-            Console.WriteLine("----------------------");
-            Console.WriteLine($"Make: \t{make}");
-            Console.WriteLine($"Model: \t{model}");
-            Console.WriteLine($"Year: \t{year}");
-            Console.WriteLine($"Cost: \t${cost}");
-        }
-    }
-
-    class carInventory
-    {
-        static void Main()
-        {
-            Car ford = new Car();
-            ford.Make = "Ford";
-            ford.Model = "Ranger";
-            ford.Year = 2026;
-            ford.Cost = 60000;
-
-            Car toyota = new Car();
-            toyota.Make = "Toyota";
-            toyota.Model = "Camry";
-            toyota.Year = 2020;
-            toyota.Cost = 15000;
-
-            Car nissan = new Car();
-            nissan.Make = "Nissan";
-            nissan.Model = "GTR";
-            nissan.Year = 2005;
-            nissan.Cost = 80000;
-
-            ford.DisplayCarInfo();
-            toyota.DisplayCarInfo();
-            nissan.DisplayCarInfo();
-        }
     }
 }

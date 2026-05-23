@@ -1,0 +1,22 @@
+{
+  "Cars": [
+    {
+      "Make": "Ford",
+      "Model": "Ranger",
+      "Year": 2026,
+      "Cost": 60000
+    },
+    {
+      "Make": "Toyota",
+      "Model": "Camry",
+      "Year": 2020,
+      "Cost": 15000
+    },
+    {
+      "Make": "Nissan",
+      "Model": "GTR",
+      "Year": 2005,
+      "Cost": 80000
+    }
+  ]
+}
